@@ -8,7 +8,7 @@
     margin-top: 2rem;
     $colorTextbereich: rgb(3, 56, 47);
     $colorStrichText: color.scale($colorTextbereich, $lightness: 20%)!default;
-    height: clamp(10rem, calc(10rem + 35vw), 36rem); /*calc(10rem + 35vw);*/
+    height: clamp(10rem, calc(#{$mHeight} - 8rem), 36rem); /*calc(10rem + 35vw);*/
     clear: both;
         
     &__textbereich { 
@@ -35,6 +35,7 @@
         @media(max-width: $breakpoint-sm) {
             width: 100%;
             float: none;
+            padding-bottom: 3rem;
         }
 
         &-text {
@@ -76,6 +77,12 @@
 
         @media(max-width: $breakpoint-sm) {
             width: 80%;
+            margin: auto;
+            float: none;
+        }
+
+        @media(max-width: $breakpoint-xs) {
+            width: 95%;
             margin: auto;
         }
 
