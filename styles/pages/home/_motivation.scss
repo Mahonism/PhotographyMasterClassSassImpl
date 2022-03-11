@@ -73,17 +73,20 @@
         @media(max-width: $breakpoint-md) {
             margin-top: 5rem;
             width: 50%;
+            height: clamp(10rem, calc(#{$mHeight} - 10vw), 36rem);
         }
 
         @media(max-width: $breakpoint-sm) {
             width: 80%;
             margin: auto;
             float: none;
+            height: clamp(10rem, calc(#{$mHeight} + 8vw), 36rem);
         }
 
         @media(max-width: $breakpoint-xs) {
-            width: 95%;
+            width: 90%;
             margin: auto;
+            height: clamp(10rem, calc(#{$mHeight} + 11vw), 36rem);
         }
 
         

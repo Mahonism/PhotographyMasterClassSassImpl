@@ -315,6 +315,7 @@ html {
   .motivation__bilderbereich {
     margin-top: 5rem;
     width: 50%;
+    height: clamp(10rem, calc(18rem + 33vw) - 10vw, 36rem);
   }
 }
 @media (max-width: 48em) {
@@ -322,12 +323,14 @@ html {
     width: 80%;
     margin: auto;
     float: none;
+    height: clamp(10rem, calc(18rem + 33vw) + 8vw, 36rem);
   }
 }
 @media (max-width: 36em) {
   .motivation__bilderbereich {
-    width: 95%;
+    width: 90%;
     margin: auto;
+    height: clamp(10rem, calc(18rem + 33vw) + 11vw, 36rem);
   }
 }
 .motivation__card {
