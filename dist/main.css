@@ -1,9 +1,14 @@
+@charset "UTF-8";
 /** 1200px oder schmaler */
 /** 992px oder schmaler */
 /** 768px oder schmaler */
 /** 576px oder schmaler */
 /** Breakpoints */
 /** COLORS **/
+/**
+    * @param $width: Breite der Card
+    * @param $height: Höhe der Card
+    */
 @font-face {
   font-family: "Jost";
   font-style: normal;
@@ -32,6 +37,17 @@ html {
 .container {
   max-width: 75rem;
   margin: 0px auto;
+  padding: 0 2rem;
+}
+@media (max-width: 62em) {
+  .container {
+    padding: 0 1rem;
+  }
+}
+.container::after {
+  display: block;
+  clear: both;
+  content: "";
 }
 
 .header {
@@ -209,6 +225,8 @@ html {
 }
 .navigation__list-item-link--logo {
   margin-top: 0.9rem;
+  padding-left: 0;
+  margin-left: 0;
 }
 .navigation__list-item-link--logo:hover {
   border-bottom: none;
@@ -216,6 +234,8 @@ html {
 }
 .navigation__list-item--menu .navigation__list-item-link {
   margin-top: 0.4rem;
+  margin-right: 0;
+  padding-right: 0;
 }
 .navigation__list-item--menu .navigation__list-item-link:hover {
   border-bottom: none;
@@ -229,78 +249,148 @@ html {
 
 .motivation {
   position: relative;
-  width: 100vw;
-  margin-top: 5rem;
+  margin-top: 2rem;
+  height: clamp(10rem, 10rem + 35vw, 36rem);
+  /*calc(10rem + 35vw);*/
+  clear: both;
 }
 .motivation__textbereich {
   float: left;
-  width: 33vw;
+  width: 33.33%;
   height: calc(18rem + 33vw);
-  padding: 5rem;
+  /*padding: 7rem;*/
+  color: #03382f;
+  /*margin: 0px auto;*/
+  padding-right: 4.5rem;
+  padding-top: 2rem;
+}
+@media (max-width: 75em) {
+  .motivation__textbereich {
+    padding-right: 3rem;
+  }
+}
+@media (max-width: 62em) {
+  .motivation__textbereich {
+    padding-right: 2rem;
+    padding-top: 0;
+    width: 50%;
+  }
+}
+@media (max-width: 48em) {
+  .motivation__textbereich {
+    width: 100%;
+    float: none;
+  }
+}
+.motivation__textbereich-text {
+  font-size: 1.1rem;
+}
+.motivation__text-heading {
+  margin-top: 8rem;
+  font-weight: 500;
   color: #03382f;
 }
-.motivation__textbereich-shortline {
+.motivation__text-heading::before {
+  content: "";
   height: 0.2rem;
-  background: linear-gradient(to right, #03382f 10%, white 10%);
+  background-color: #088e77;
+  width: 3rem;
+  display: block;
+  margin-bottom: 0.5rem;
 }
 .motivation__bilderbereich {
   height: calc(18rem + 33vw);
-  width: auto;
+  float: left;
+  width: 66.66%;
   position: relative;
+  /*margin-left: 25%;*/
+}
+@media (max-width: 75em) {
+  .motivation__bilderbereich {
+    margin-top: 5rem;
+  }
+}
+@media (max-width: 62em) {
+  .motivation__bilderbereich {
+    margin-top: 5rem;
+    width: 50%;
+  }
+}
+@media (max-width: 48em) {
+  .motivation__bilderbereich {
+    width: 80%;
+    margin: auto;
+  }
+}
+.motivation__card {
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+  position: absolute;
+  overflow: hidden;
+  box-sizing: content-box;
 }
 .motivation__card-berge {
-  width: 50%;
+  width: 80%;
   height: 40%;
   background-image: url("./../images/motivation/pexels-simon-migaj-747964.jpg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  left: auto;
-  top: 10px;
-  right: 0;
+  left: 25%;
+  top: 0.1rem;
+  right: -0.6rem;
   bottom: auto;
-  position: absolute;
-  overflow: hidden;
   z-index: 1;
+  filter: grayscale(0.5);
 }
 .motivation__card-berge:hover {
   animation-name: cardHover;
-  animation-duration: 1s;
+  animation-duration: 0.25s;
   animation-iteration-count: 1;
   animation-timing-function: ease-in-out;
   animation-fill-mode: both;
-  border: 5px solid #00d3b0;
-  box-shadow: 0 0 5px #00d3b0;
+  /*animation-delay: 0.2s;*/
+  outline: 0.4rem solid #00d3b0;
+  /*padding: 0.33rem;*/
   z-index: 4;
+  background-color: transparent;
+  left: calc(25% - 0rem);
+  top: 0.1rem;
+  right: -1.1rem;
+  bottom: calc(auto - 0rem);
 }
 .motivation__card-meer {
-  width: 40%;
-  height: 40%;
+  width: 45%;
+  height: 45%;
   background-image: url("./../images/motivation/pexels-jacub-gomez-1152043.jpg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  left: 40%;
+  left: 10%;
   top: 20%;
   right: auto;
   bottom: auto;
-  position: absolute;
-  overflow: hidden;
   z-index: 2;
+  filter: grayscale(0.5);
 }
 .motivation__card-meer:hover {
   animation-name: cardHover;
-  animation-duration: 1s;
+  animation-duration: 0.25s;
   animation-iteration-count: 1;
   animation-timing-function: ease-in-out;
   animation-fill-mode: both;
-  border: 5px solid #00d3b0;
-  box-shadow: 0 0 5px #00d3b0;
+  /*animation-delay: 0.2s;*/
+  outline: 0.4rem solid #00d3b0;
+  /*padding: 0.33rem;*/
   z-index: 4;
+  background-color: transparent;
+  left: calc(10% - 0rem);
+  top: calc(20% - 0rem);
+  right: calc(auto - 0.4rem);
+  bottom: calc(auto - 0.4rem);
 }
 .motivation__card-see-baum {
-  width: 30%;
-  height: 70%;
+  width: 50%;
+  height: 60%;
   background-image: url("./../images/motivation/pexels-jaime-reimer-2662086.jpg");
   background-repeat: no-repeat;
   background-position: center center;
@@ -309,26 +399,33 @@ html {
   top: 15%;
   right: 5%;
   bottom: auto;
-  position: absolute;
-  overflow: hidden;
   z-index: 3;
+  filter: grayscale(0.5);
 }
 .motivation__card-see-baum:hover {
   animation-name: cardHover;
-  animation-duration: 1s;
+  animation-duration: 0.25s;
   animation-iteration-count: 1;
   animation-timing-function: ease-in-out;
   animation-fill-mode: both;
-  border: 5px solid #00d3b0;
-  box-shadow: 0 0 5px #00d3b0;
+  /*animation-delay: 0.2s;*/
+  outline: 0.4rem solid #00d3b0;
+  /*padding: 0.33rem;*/
   z-index: 4;
+  background-color: transparent;
+  left: calc(auto - 0.4rem);
+  top: calc(15% - 0rem);
+  right: calc(5% - 0rem);
+  bottom: calc(auto - 0.4rem);
 }
 @keyframes cardHover {
   0% {
     transform: scale(1);
+    filter: grayscale(0.5);
   }
   100% {
     transform: scale(1.2);
+    filter: grayscale(0);
   }
 }
 

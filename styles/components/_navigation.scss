@@ -32,6 +32,8 @@
 
         &--logo {
             margin-top: 0.9rem;
+            padding-left: 0;
+            margin-left: 0;
 
             &:hover {
                 border-bottom: none;
@@ -42,6 +44,8 @@
 
     &--menu &-link {
         margin-top: 0.4rem;
+        margin-right: 0;
+        padding-right: 0;
 
         &:hover {
             border-bottom: none;
