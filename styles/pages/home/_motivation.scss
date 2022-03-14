@@ -8,7 +8,7 @@
     margin-top: 2rem;
     $colorTextbereich: rgb(3, 56, 47);
     $colorStrichText: color.scale($colorTextbereich, $lightness: 20%)!default;
-    height: clamp(10rem, calc(#{$mHeight} - 8rem), 36rem); /*calc(10rem + 35vw);*/
+    /*height: clamp(10rem, calc(#{$mHeight} - 8rem), 36rem); --> iwas klappt da nicht so ganz /*calc(10rem + 35vw);*/
     clear: both;
         
     &__textbereich { 

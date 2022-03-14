@@ -1,0 +1,189 @@
+@use "../../abstracts/" as *;
+
+$-tours-background-color: $color-secondary-dark;
+$card-width: 3rem;
+$-animation-duration: 0.25s;
+
+.tours {
+  background-color: $-tours-background-color;
+  position: relative;
+  padding-bottom: 2rem;
+
+  &__heading {
+    text-transform: uppercase;
+    color: white;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-align: center;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    font-size: 2rem;
+  }
+
+  @mixin -tours__before-and-after-stroke($color) {
+    @supports (-webkit-text-stroke: 2px $color) or (text-stoke: 2px $color) {
+      -webkit-text-stroke: 2px $color;
+      text-stroke: 2px $color; /* --> Wenn Offiziell übernommen dann dieser text */
+      text-shadow: none !important;
+    }
+  }
+
+  &::before {
+    @extend %tours__before-and-after;
+
+    @include -tours__before-and-after-stroke(rgba(255, 255, 255, 0.25));
+  }
+
+  &::after {
+    @extend %tours__before-and-after;
+
+    @include -tours__before-and-after-stroke(transparent);
+  }
+
+  &__container {
+    @include make-container();
+
+    position: relative;
+    z-index: 1;
+  }
+
+  &__cards {
+    display: flex;
+  }
+
+  &__card {
+    width: 20%;
+    position: relative;
+    height: 21rem;
+    overflow: hidden;
+    transition: transform $-animation-duration ease-in-out,
+                z-index $-animation-duration ease-in-out,
+                box-shadow $-animation-duration ease-in-out;
+    z-index: 0;
+    box-shadow: 0 0 1rem transparent;
+
+    &-img {
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    &-content {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      color: white;
+      padding: 3rem 1rem 0 1rem;
+
+      text-shadow: 0 0 0.125rem black;
+      background-image: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(0, 0, 0, 0.25) 20%
+      );
+
+      transform: translate(0, calc(100% - 7rem));
+      transition: transform $-animation-duration ease-in-out;
+    }
+
+    &-heading {
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    &-icon {
+      width: $card-width;
+
+      color: white;
+      display: block;
+
+      &-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: $color-primary;
+        height: 3rem;
+
+        width: 100%;
+        transform: translate(calc(-100% + $card-width), 0);
+        transition: transform $-animation-duration ease-in-out;
+      }
+
+      &-container {
+        top: 0;
+        left: 0;
+        width: 100%;
+        position: absolute;
+        transform: translate(0, 0);
+        transition: transform $-animation-duration ease-in-out;
+      }
+    }
+
+    &-location {
+      font-size: 0.9rem;
+      margin-bottom: 0.55rem;
+      display: flex;
+
+      &-icon {
+        font-size: 1.25rem;
+      }
+
+      &-text {
+        line-height: 2rem;
+        padding-left: 0.25rem;
+      }
+    }
+
+    &-desc {
+      font-weight: 500;
+      background-image: linear-gradient(
+        90deg,
+        $color-primary 60%,
+        transparent 60%
+      );
+      background-position: top;
+      background-size: 100% 0.125rem;
+      background-repeat: no-repeat;
+      padding-top: 1rem;
+      font-size: 0.7rem;
+    }
+
+    &:hover &-icon-background {
+      transform: translate(0, 0);
+      box-shadow: 0 0 0.125 black;
+    }
+    &:hover &-icon-container {
+        transform: translate(calc(50% - ($card-width/2)), 0);
+    }
+    &:hover &-content {
+        transform: translate(0, 0);
+    }
+    &:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 0.25rem black;
+
+        /* CSS-Trick Hover-Problematik von einem Element zum anderen hovern -> z-Index beim verlassen gleich beim hineinkommen auf einen hohen Wert setzen. */
+        transition: transform $-animation-duration ease-in-out,
+                    z-index 0s ease-in-out;
+
+        z-index: 1000;
+    }
+  }
+}
+
+%tours__before-and-after {
+  position: absolute;
+  top: 0;
+  content: "Tame the Wild";
+  color: $-tours-background-color;
+  font-size: 10rem;
+  text-transform: uppercase;
+  text-shadow: 0 0 1px white;
+  font-weight: bold;
+  text-align: center;
+  left: 0;
+  right: 0;
+  z-index: 0;
+}

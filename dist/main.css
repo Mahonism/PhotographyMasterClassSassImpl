@@ -6,9 +6,9 @@
 /** Breakpoints */
 /** COLORS **/
 /**
-    * @param $width: Breite der Card
-    * @param $height: Höhe der Card
-    */
+* @param $width: Breite der Card
+* @param $height: Höhe der Card
+*/
 @font-face {
   font-family: "Jost";
   font-style: normal;
@@ -75,7 +75,20 @@ html {
   background-size: 100vw 10vw;
 }
 .header__container {
+  max-width: 75rem;
+  margin: 0px auto;
+  padding: 0 2rem;
   position: relative;
+}
+@media (max-width: 62em) {
+  .header__container {
+    padding: 0 1rem;
+  }
+}
+.header__container::after {
+  display: block;
+  clear: both;
+  content: "";
 }
 .header::before {
   content: "";
@@ -250,8 +263,7 @@ html {
 .motivation {
   position: relative;
   margin-top: 2rem;
-  height: clamp(10rem, calc(18rem + 33vw) - 8rem, 36rem);
-  /*calc(10rem + 35vw);*/
+  /*height: clamp(10rem, calc(calc(18rem + 33vw) - 8rem), 36rem); --> iwas klappt da nicht so ganz /*calc(10rem + 35vw);*/
   clear: both;
 }
 .motivation__textbereich {
@@ -438,6 +450,165 @@ html {
     transform: scale(1.2);
     filter: grayscale(0);
   }
+}
+
+.tours {
+  background-color: #011820;
+  position: relative;
+  padding-bottom: 2rem;
+}
+.tours__heading {
+  text-transform: uppercase;
+  color: white;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-align: center;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  font-size: 2rem;
+}
+@supports (-webkit-text-stroke: 2px rgba(255, 255, 255, 0.25)) or (text-stoke: 2px rgba(255, 255, 255, 0.25)) {
+  .tours::before {
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.25);
+    text-stroke: 2px rgba(255, 255, 255, 0.25);
+    /* --> Wenn Offiziell übernommen dann dieser text */
+    text-shadow: none !important;
+  }
+}
+@supports (-webkit-text-stroke: 2px transparent) or (text-stoke: 2px transparent) {
+  .tours::after {
+    -webkit-text-stroke: 2px transparent;
+    text-stroke: 2px transparent;
+    /* --> Wenn Offiziell übernommen dann dieser text */
+    text-shadow: none !important;
+  }
+}
+.tours__container {
+  max-width: 75rem;
+  margin: 0px auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 62em) {
+  .tours__container {
+    padding: 0 1rem;
+  }
+}
+.tours__container::after {
+  display: block;
+  clear: both;
+  content: "";
+}
+.tours__cards {
+  display: flex;
+}
+.tours__card {
+  width: 20%;
+  position: relative;
+  height: 21rem;
+  overflow: hidden;
+  transition: transform 0.25s ease-in-out, z-index 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+  z-index: 0;
+  box-shadow: 0 0 1rem transparent;
+}
+.tours__card-img {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.tours__card-content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: white;
+  padding: 3rem 1rem 0 1rem;
+  text-shadow: 0 0 0.125rem black;
+  background-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.25) 20%);
+  transform: translate(0, calc(100% - 7rem));
+  transition: transform 0.25s ease-in-out;
+}
+.tours__card-heading {
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+.tours__card-icon {
+  width: 3rem;
+  color: white;
+  display: block;
+}
+.tours__card-icon-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #00e29c;
+  height: 3rem;
+  width: 100%;
+  transform: translate(calc(-100% + 3rem), 0);
+  transition: transform 0.25s ease-in-out;
+}
+.tours__card-icon-container {
+  top: 0;
+  left: 0;
+  width: 100%;
+  position: absolute;
+  transform: translate(0, 0);
+  transition: transform 0.25s ease-in-out;
+}
+.tours__card-location {
+  font-size: 0.9rem;
+  margin-bottom: 0.55rem;
+  display: flex;
+}
+.tours__card-location-icon {
+  font-size: 1.25rem;
+}
+.tours__card-location-text {
+  line-height: 2rem;
+  padding-left: 0.25rem;
+}
+.tours__card-desc {
+  font-weight: 500;
+  background-image: linear-gradient(90deg, #00e29c 60%, transparent 60%);
+  background-position: top;
+  background-size: 100% 0.125rem;
+  background-repeat: no-repeat;
+  padding-top: 1rem;
+  font-size: 0.7rem;
+}
+.tours__card:hover .tours__card-icon-background {
+  transform: translate(0, 0);
+  box-shadow: 0 0 0.125 black;
+}
+.tours__card:hover .tours__card-icon-container {
+  transform: translate(calc(50% - 1.5rem), 0);
+}
+.tours__card:hover .tours__card-content {
+  transform: translate(0, 0);
+}
+.tours__card:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 0.25rem black;
+  /* CSS-Trick Hover-Problematik von einem Element zum anderen hovern -> z-Index beim verlassen gleich beim hineinkommen auf einen hohen Wert setzen. */
+  transition: transform 0.25s ease-in-out, z-index 0s ease-in-out;
+  z-index: 1000;
+}
+
+.tours::before, .tours::after {
+  position: absolute;
+  top: 0;
+  content: "Tame the Wild";
+  color: #011820;
+  font-size: 10rem;
+  text-transform: uppercase;
+  text-shadow: 0 0 1px white;
+  font-weight: bold;
+  text-align: center;
+  left: 0;
+  right: 0;
+  z-index: 0;
 }
 
 /*# sourceMappingURL=main.css.map */

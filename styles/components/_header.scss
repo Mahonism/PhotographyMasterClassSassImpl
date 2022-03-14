@@ -27,6 +27,9 @@
   }
 
   &__container {
+
+    @include make-container();
+
     position: relative;
   }
 

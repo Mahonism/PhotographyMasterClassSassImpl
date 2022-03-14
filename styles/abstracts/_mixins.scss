@@ -1,3 +1,5 @@
+@use "./variables" as *;
+
 @mixin clearfix() {
     &::after {
         display: block;
@@ -7,43 +9,55 @@
 }
 
 /**
-    * @param $width: Breite der Card
-    * @param $height: Höhe der Card
-    */
-    @mixin card($width, $height, $imageName, $left, $top, $right, $bottom, $zIndex, $hoverLeft: 0rem, $hoverTop: 0rem, $hoverRight: 0rem, $hoverBottom: 0rem) {
-        
-        $imagePath: "./../images/motivation";
-        $cardBackground: rgb(0, 211, 176);
+* @param $width: Breite der Card
+* @param $height: Höhe der Card
+*/
+@mixin card($width, $height, $imageName, $left, $top, $right, $bottom, $zIndex, $hoverLeft: 0rem, $hoverTop: 0rem, $hoverRight: 0rem, $hoverBottom: 0rem) {
+    
+    $imagePath: "./../images/motivation";
+    $cardBackground: rgb(0, 211, 176);
 
-        width: $width;
-        height: $height;
-        background-image: url("#{$imagePath}/#{$imageName}");
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: cover;
-        left: $left;
-        top: $top;
-        right: $right;
-        bottom: $bottom;
-        z-index: $zIndex;
-        filter: grayscale(0.5);
+    width: $width;
+    height: $height;
+    background-image: url("#{$imagePath}/#{$imageName}");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    left: $left;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    z-index: $zIndex;
+    filter: grayscale(0.5);
 
-        &:hover {
-            animation-name: cardHover;
-            animation-duration: 0.25s;
-            animation-iteration-count: 1;
-            animation-timing-function: ease-in-out;
-            animation-fill-mode: both;
-            /*animation-delay: 0.2s;*/
+    &:hover {
+        animation-name: cardHover;
+        animation-duration: 0.25s;
+        animation-iteration-count: 1;
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: both;
+        /*animation-delay: 0.2s;*/
 
-            outline: 0.4rem solid $cardBackground;
-            /*padding: 0.33rem;*/
-            z-index: 4;
-            background-color: transparent;
+        outline: 0.4rem solid $cardBackground;
+        /*padding: 0.33rem;*/
+        z-index: 4;
+        background-color: transparent;
 
-            left: calc($left - $hoverLeft);
-            top: calc($top - $hoverTop);
-            right: calc($right - $hoverRight);
-            bottom: calc($bottom - $hoverBottom);
-        }       
+        left: calc($left - $hoverLeft);
+        top: calc($top - $hoverTop);
+        right: calc($right - $hoverRight);
+        bottom: calc($bottom - $hoverBottom);
+    }       
+}
+
+@mixin make-container() {
+    max-width: 75rem;
+    margin: 0px auto;
+    padding: 0 2rem;
+
+    @media (max-width: $breakpoint-md) {
+        padding: 0 1rem;
     }
+
+    @include clearfix;
+}
